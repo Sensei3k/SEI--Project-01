@@ -1,2 +1,2 @@
-# SEI--Project-01
-JavaScript Game
+# SEI-Project-01
+Space Invaders JavaScript Game
