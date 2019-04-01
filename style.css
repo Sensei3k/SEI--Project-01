@@ -1,4 +1,58 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: dodgerblue;
   color: white;
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  margin: 0;
+}
+
+h1 {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.grid {
+  align-items: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  background: black;
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+  max-height: 600px;
+  max-width: 600px;
+}
+
+.grid div {
+  flex-grow: 1;
+  height: calc(100% / 9);
+  width: calc(100% / 9);
+  border: 1px solid white;
+}
+
+.grid div.player {
+  background-image: url(image/space-invaders.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.grid div.player[data-direction="forward"] {
+  transform: scaleX(1);
+}
+
+.grid div.player[data-direction="backward"] {
+  transform: scaleX(-1);
+}
+
+.grid div.alien {
+  content:url(image/aliens.png);
 }
