@@ -3,7 +3,11 @@
 }
 
 body {
-  background: dodgerblue;
+  /* background: dodgerblue; */
+  background-image: url('image/4k-space-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: white;
   align-items: center;
   display: flex;
@@ -16,12 +20,27 @@ h1 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  font-family: 'Press Start 2P', cursive
+}
+
+.point {
+font-family: 'Press Start 2P', cursive;
+font-size: 24px;
+}
+
+.laser {
+  content: url('image/bullet.png');
+}
+
+.lives {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 24px;
 }
 
 .grid {
   align-items: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
-  background: black;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
@@ -35,7 +54,7 @@ h1 {
   flex-grow: 1;
   height: calc(100% / 9);
   width: calc(100% / 9);
-  border: 1px solid white;
+  /* border: 1px solid white; */
 }
 
 .grid div.player {
@@ -56,3 +75,23 @@ h1 {
 .grid div.alien {
   content:url(image/aliens.png);
 }
+
+.grid div.bomb {
+  background-color: red;
+}
+
+/* .welcome_screen {
+ font-family: 'Space Mono', monospace;
+ width: 1400px;
+ height: 600px;
+ /* background-color: black; */
+ background-image: url(../image/4k-space-background.jpg);
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ border-radius: 20px;
+ border: 10px     #9370DB solid;
+ box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
+ animation: scroll-background 5s linear infinite;
+ transform: translate(-50%, -50%);
+} */
