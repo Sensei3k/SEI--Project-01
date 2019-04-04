@@ -3,9 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //  ========= Global Scope ====================
   const grid = document.querySelector('.grid')
-  const point = document.querySelector('.point')
-  const livesboard = document.querySelector('.lives')
+  const point = document.querySelector('.point span')
+  const livesboard = document.querySelector('.lives span')
   const width = 9
+  const startButton = document.querySelector('.button')
+  const overlay = document.querySelector('.overlay')
   const squares = []
   let userIndex = 76
   let invaders = [0, 2, 3, 4, 5, 6, 8, 10, 11, 13, 14, 15, 16, 17]
@@ -13,31 +15,76 @@ document.addEventListener('DOMContentLoaded', () => {
   let direction = 'forward'
   let points = 0
   let lives = 3
+  let invadersBombInterval = null
+  let collisionInterval = null
+  let currentPlayer = null
+  let gameInPlay = false
+
 
   //  =========== Create Board ====================
-  for (let i = 0; i < width * width; i++) {
-    const square = document.createElement('div')
-    squares.push(square)
-    grid.appendChild(square)
+  function createBoard() {
+    for (let i = 0; i < width * width; i++) {
+      const square = document.createElement('div')
+      squares.push(square)
+      grid.appendChild(square)
+    }
+    squares[userIndex].classList.add('player')
   }
-
-  squares[userIndex].classList.add('player')
+  createBoard()
 
   // ============== FUNCTIONS ====================
-  function move() {
 
+  function startGame() {
+    //call all functions to start the game eg. move()
+    overlay.style.display = 'none'
+    gameInPlay = true
+    moveAliens()
+    move()
+    collisionInterval = setInterval(() => {
+      currentPlayer = squares[userIndex]
+      if (currentPlayer.classList.contains('bomb')) {
+        currentPlayer.classList.remove('bomb')
+        if (lives > 0) {
+          lives--
+          livesboard.textContent = lives
+        }
+        if (lives === 0) {
+          gameOver()
+        }
+      }
+    }, 100)
+
+    invadersBombInterval = setInterval(() => {
+      // ============ New Set Interval for invader Bombs ========
+      const bombIndex = invaders[Math.floor(Math.random() * (invaders.length))]
+      dropBomb(bombIndex)
+    }, 1000)
+  }
+
+  function gameOver() {
+    console.log('Game Over!')
+    clearInterval(invadersBombInterval)
+    clearInterval(collisionInterval)
+    // Stop Game
+    currentPlayer.classList.remove('player')
+    // this needs to be in the DOM
+    // div.classList.remove('hidden')
+    alert('Jokes on you, for you have failed and all life on Earth shall be anahilated!!')
+  }
+
+  //============== PLAYER FUNCTIONS ====================
+  function move() {
     const player = squares.find(square => square.classList.contains('player'))
 
     player.classList.remove('player')
 
     squares[userIndex].classList.add('player')
     squares[userIndex].setAttribute('data-direction', direction)
-
   }
 
   function shootLasers() {
     // Get the index of the square above the player
-    let lasersIndex = userIndex - width
+    let lasersIndex = userIndex
     // Get the DOM element of the square above the player
     let lasers = squares[lasersIndex]
     // Move missiles up
@@ -73,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100)
   }
 
+  //============== ALIEN FUNCTIONS ====================
   function dropBomb(bombIndex) {
     let missilesIndex = bombIndex + width
     let missile = squares[missilesIndex]
@@ -86,38 +134,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 100)
   }
-  // ============ New Set Interval for invader Bombs ========
-  const invadersBombInterval = setInterval(() => {
-    const bombIndex = invaders[Math.floor(Math.random() * (invaders.length))]
-    dropBomb(bombIndex)
-  }, 1000)
-  //User and Bomb collision
-  function collision() {
-    const collisionInterval = setInterval(() => {
-      const currentPlayer = squares[userIndex]
-      if (currentPlayer.classList.contains('bomb')) {
-        currentPlayer.classList.remove('bomb')
 
-        if (lives > 0) {
-          lives--
-          livesboard.textContent = lives
-        }
-        if (lives === 0) {
-          console.log('Game Over!')
-          clearInterval(collisionInterval)
-          // stop EVERYTHING...
-          currentPlayer.classList.remove('player')
-          alert('You have failed Earth will be anahilated!!')
-        }
-      }
-    }, 100)
+  // ============ Alien Movement ============
+  function moveAliens() {
+    invaders.forEach(alien => {
+      squares[alien].classList.add('alien')
+    })
+
+    intervalId = setInterval(() => {
+      squares.forEach(square => square.classList.remove('alien'))
+      invaders = invaders.map(alien => alien + 1)
+
+      invaders.forEach(alien => {
+        squares[alien].classList.add('alien')
+      })
+
+      if (invaders.some(alien => alien >= 80)) clearInterval(intervalId)
+
+    }, 1000)
   }
-
-  collision()
-  invadersBombInterval
 
   // ============ Event Listeners =======================
   document.addEventListener('keyup', (e) => {
+    if(!gameInPlay) return false
     switch (e.keyCode) {
       case 37:
         // left
@@ -144,21 +183,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-  // ============ Alien Movement ============
-  invaders.forEach(alien => {
-    squares[alien].classList.add('alien')
-  })
-
-  intervalId = setInterval(() => {
-    squares.forEach(square => square.classList.remove('alien'))
-    invaders = invaders.map(alien => alien + 1)
-
-    invaders.forEach(alien => {
-      squares[alien].classList.add('alien')
-    })
-
-    if (invaders.some(alien => alien >= 80)) clearInterval(intervalId)
-
-  }, 1000)
+  startButton.addEventListener('click', startGame)
 
 })
+
+// gameInPlay = true

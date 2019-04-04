@@ -8,12 +8,13 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: white;
+  color: black;
   align-items: center;
   display: flex;
   height: 100vh;
   justify-content: center;
   margin: 0;
+  flex-direction: column;
 }
 
 h1 {
@@ -23,13 +24,19 @@ h1 {
   font-family: 'Press Start 2P', cursive
 }
 
+h2  {
+  font-family: 'Press Start 2P', cursive
+}
+
 .point {
-font-family: 'Press Start 2P', cursive;
-font-size: 24px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 24px;
 }
 
 .laser {
-  content: url('image/bullet.png');
+  background-image: url('image/bullet.png');
+  background-repeat: no-repeat;
+  width: 3px;
 }
 
 .lives {
@@ -46,8 +53,8 @@ font-size: 24px;
   flex-wrap: wrap;
   height: 100%;
   justify-content: center;
-  max-height: 600px;
-  max-width: 600px;
+  height: 600px;
+  width: 600px;
 }
 
 .grid div {
@@ -73,25 +80,27 @@ font-size: 24px;
 }
 
 .grid div.alien {
-  content:url(image/aliens.png);
+  content: url(image/aliens.png);
 }
 
 .grid div.bomb {
   background-color: red;
 }
 
-/* .welcome_screen {
- font-family: 'Space Mono', monospace;
- width: 1400px;
- height: 600px;
- /* background-color: black; */
- background-image: url(../image/4k-space-background.jpg);
- position: absolute;
- top: 50%;
- left: 50%;
- border-radius: 20px;
- border: 10px     #9370DB solid;
- box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
- animation: scroll-background 5s linear infinite;
- transform: translate(-50%, -50%);
-} */
+div.welcome_screen {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
