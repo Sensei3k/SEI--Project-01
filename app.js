@@ -8,17 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const width = 9
   const startButton = document.querySelector('.button')
   const overlay = document.querySelector('.overlay')
+  const hidden = document.querySelector('.hidden')
+  const resetButton = document.querySelector('.reset')
   const squares = []
   let userIndex = 76
   let invaders = [0, 2, 3, 4, 5, 6, 8, 10, 11, 13, 14, 15, 16, 17]
   let intervalId = null
   let direction = 'forward'
   let points = 0
-  let lives = 3
+  let lives = 1
   let invadersBombInterval = null
   let collisionInterval = null
   let currentPlayer = null
   let gameInPlay = false
+  let player = null
 
 
   //  =========== Create Board ====================
@@ -37,8 +40,17 @@ document.addEventListener('DOMContentLoaded', () => {
   function startGame() {
     //call all functions to start the game eg. move()
     overlay.style.display = 'none'
+    hidden.style.display = 'none'
     gameInPlay = true
+    userIndex = 76
+    lives = 1
+    points = 0
+    invaders = [0, 2, 3, 4, 5, 6, 8, 10, 11, 13, 14, 15, 16, 17]
+    livesboard.textContent = lives
+    point.textContent = points
+    squares.forEach(square => square.classList.remove('alien'))
     moveAliens()
+    squares[userIndex].classList.add('player')
     move()
     collisionInterval = setInterval(() => {
       currentPlayer = squares[userIndex]
@@ -63,18 +75,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function gameOver() {
     console.log('Game Over!')
+    hidden.style.display = 'flex'
+    gameInPlay = false
+    currentPlayer.classList.remove('player')
+    squares.forEach(square => square.classList.remove('alien'))
     clearInterval(invadersBombInterval)
     clearInterval(collisionInterval)
-    // Stop Game
-    currentPlayer.classList.remove('player')
-    // this needs to be in the DOM
-    // div.classList.remove('hidden')
-    alert('Jokes on you, for you have failed and all life on Earth shall be anahilated!!')
+    clearInterval(intervalId)
+  }
+
+  function reset() {
+    startGame()
   }
 
   //============== PLAYER FUNCTIONS ====================
   function move() {
-    const player = squares.find(square => square.classList.contains('player'))
+    player = squares.find(square => square.classList.contains('player'))
 
     player.classList.remove('player')
 
@@ -156,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ============ Event Listeners =======================
   document.addEventListener('keyup', (e) => {
-    if(!gameInPlay) return false
+    if (!gameInPlay) return false
     switch (e.keyCode) {
       case 37:
         // left
@@ -184,6 +200,8 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   startButton.addEventListener('click', startGame)
+  resetButton.addEventListener('click', reset)
+
 
 })
 
