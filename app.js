@@ -5,24 +5,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const grid = document.querySelector('.grid')
   const point = document.querySelector('.point span')
   const livesboard = document.querySelector('.lives span')
-  const width = 9
   const startButton = document.querySelector('.button')
   const overlay = document.querySelector('.overlay')
   const hidden = document.querySelector('.hidden')
   const resetButton = document.querySelector('.reset')
+  const missileAudio = document.querySelector('.laser_audio')
+  const invaderExplosion = document.querySelector('.invader_killed')
+  const userHit = document.querySelector('.player_hit')
+  const lifeLost = document.querySelector('.life_lost')
+  const message = document.querySelector('.para')
   const squares = []
-  let userIndex = 76
-  let invaders = [0, 2, 3, 4, 5, 6, 8, 10, 11, 13, 14, 15, 16, 17]
+  const width = 11
+  let userIndex = 115
+  let invaders = [0, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25]
   let intervalId = null
   let direction = 'forward'
   let points = 0
-  let lives = 1
+  let lives = 3
   let invadersBombInterval = null
   let collisionInterval = null
   let currentPlayer = null
   let gameInPlay = false
   let player = null
-
 
   //  =========== Create Board ====================
   function createBoard() {
@@ -42,10 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.style.display = 'none'
     hidden.style.display = 'none'
     gameInPlay = true
-    userIndex = 76
-    lives = 1
+    userIndex = 115
+    lives = 3
     points = 0
-    invaders = [0, 2, 3, 4, 5, 6, 8, 10, 11, 13, 14, 15, 16, 17]
+    invaders = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26]
     livesboard.textContent = lives
     point.textContent = points
     squares.forEach(square => square.classList.remove('alien'))
@@ -57,20 +61,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (currentPlayer.classList.contains('bomb')) {
         currentPlayer.classList.remove('bomb')
         if (lives > 0) {
+          lifeLost.play
           lives--
           livesboard.textContent = lives
         }
         if (lives === 0) {
+          userHit.play()
           gameOver()
+          message.textContent = 'You had just one job man!!! Now we are dead!'
         }
       }
     }, 100)
 
     invadersBombInterval = setInterval(() => {
       // ============ New Set Interval for invader Bombs ========
-      const bombIndex = invaders[Math.floor(Math.random() * (invaders.length))]
+      const bombIndex = invaders[Math.floor(Math.random() * (invaders.length - 1))]
       dropBomb(bombIndex)
-    }, 1000)
+    }, 700)
   }
 
   function gameOver() {
@@ -79,6 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
     gameInPlay = false
     currentPlayer.classList.remove('player')
     squares.forEach(square => square.classList.remove('alien'))
+    clearInterval(invadersBombInterval)
+    clearInterval(collisionInterval)
+    clearInterval(intervalId)
+  }
+
+  function pause() {
     clearInterval(invadersBombInterval)
     clearInterval(collisionInterval)
     clearInterval(intervalId)
@@ -109,6 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
       lasers.classList.remove('laser')
       // if laser hits an alien
       if (lasers.classList.contains('alien')) {
+        // play explosion sound
+        invaderExplosion.play()
         // stop the interval
         clearInterval(lasersInterval)
         // remove class of alien
@@ -131,6 +146,11 @@ document.addEventListener('DOMContentLoaded', () => {
           lasers.classList.add('laser')
         }
       }
+      if (invaders.length === 0) {
+        gameOver()
+        message.textContent = `Well done! you saved Earth, with a highscore of ${points}`
+      }
+
       point.innerText = points
       //...repeat every 100ms
     }, 100)
@@ -148,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
         missile = squares[missilesIndex]
         squares[missilesIndex].classList.add('bomb')
       }
-    }, 100)
+    }, 50)
   }
 
   // ============ Alien Movement ============
@@ -165,9 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
         squares[alien].classList.add('alien')
       })
 
-      if (invaders.some(alien => alien >= 80)) clearInterval(intervalId)
-
-    }, 1000)
+      if (invaders.some(alien => alien >= 109)) {
+        clearInterval(intervalId)
+        gameOver()
+        message.textContent = 'The Aliens reached Earth'
+      }
+    }, 200)
   }
 
   // ============ Event Listeners =======================
@@ -194,14 +217,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
       case 32:
         // spacebar
+        e.preventDefault()
+        missileAudio.pause()
+        missileAudio.currentTime = 0
+        missileAudio.play()
         shootLasers()
+        break
+
+      case 80:
+        pause()
         break
     }
   })
 
   startButton.addEventListener('click', startGame)
   resetButton.addEventListener('click', reset)
-
 
 })
 

@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Sensei's Space Invaders</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="app.js" charset="utf-8"></script>
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-  </head>
-  <body>
-    <div class="overlay">
-      <h2>
-        You are Earth's last hope, will you be the One?
-      </h2>
-      <button class="button">Start</button>
+
+<head>
+  <meta charset="utf-8">
+  <title>Sensei's Space Invaders</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" charset="utf-8"></script>
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+</head>
+
+<body>
+  <div class="overlay">
+    <h2>
+      Welcome to Space Invaders
+    </h2>
+    <p>
+      When evil alien invaders attack, it's up to you to defend the planet. Fight off hoards of alien forces before they reach the surface. Only with your help, can the aliens be repelled. You must stop the Space Invaders!
+    </p>
+    <h3>Controls
+    </h3>
+    <p>
+      MOVEMENT: Left and Right Arrow Keys <br>
+      LASER: Space
+    </p>
+    <button class="button">Start</button>
+  </div>
+  <div class="hidden">
+    <h2 class="para"></h2>
+    <button class="reset">Reset</button>
+  </div>
+  <div class="welcome_screen">
+    <h1>Space Invaders</h1>
+    <div class="container">
+      <div class="lives">Lives:<span>3</span></div>
+      <div class="point">Points:<span>0</span></div>
     </div>
-    <div class="hidden">
-      <h2>
-        'Haha jokes on you, you had just one job!!
-      </h2>
-      <button class="reset">Reset</button>
-    </div>
-    <div class="welcome_screen">
-      <h1>Space Invaders</h1>
-      <div class="lives">Lives <span>3</span></div>
-      <div class="point">Points: <span>0</span></div>
-    </div>
-    <div class="grid"></div>
-  </body>
+  </div>
+  <div class="grid"></div>
+  <audio class="laser_audio" src="audio/PlayerDidFire.wav"></audio>
+  <audio class="invader_killed" src="audio/EnemyWasHit.wav"></audio>
+  <audio class="player_hit" src="audio/PlayerWasHit.wav"></audio>
+  <audio class="life_lost" src="audio/lifelost.wav"></audio>
+</body>
+
 </html>

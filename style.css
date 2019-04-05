@@ -3,43 +3,60 @@
 }
 
 body {
-  /* background: dodgerblue; */
-  background-image: url('image/4k-space-background.jpg');
+  background-image: url('images/space2.gif');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: black;
+  color: white;
   align-items: center;
   display: flex;
   height: 100vh;
   justify-content: center;
   margin: 0;
   flex-direction: column;
+  padding-bottom: 50px;
 }
 
 h1 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-family: 'Press Start 2P', cursive
+  font-family: 'Press Start 2P', cursive;
 }
 
-h2 {
-  font-family: 'Press Start 2P', cursive
+h2, h3, p {
+  font-family: 'Press Start 2P', cursive;
+  color: limegreen;
+  padding: 0 100px;
+}
+
+h3 {
+  text-decoration: underline;
+}
+
+p {
+  font-size: 23px;
+  line-height: 30px;
+}
+
+button {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 2px;
+    width: 150px;
+    height: 30px;
+}
+
+ .container {
+  display: flex;
 }
 
 .point {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 24px;
+  margin-left: 20px;
 }
 
-.laser {
-  background-image: url('image/bullet.png');
-  background-repeat: no-repeat;
-  width: 3px;
-}
-
-.lives {
+.lives, .point {
   font-family: 'Press Start 2P', cursive;
   font-size: 24px;
 }
@@ -55,36 +72,47 @@ h2 {
   justify-content: center;
   height: 600px;
   width: 600px;
+  border: 2px solid limegreen;
+  border-radius: 9px;
 }
 
 .grid div {
   flex-grow: 1;
-  height: calc(100% / 9);
-  width: calc(100% / 9);
-  /* border: 1px solid white; */
+  height: calc(100% / 11);
+  width: calc(100% / 11);
+}
+
+.laser {
+  background-image: url(images/full-sprite-sheet.png);
+  background-size: 576%;
+  background-repeat: no-repeat;
+  background-position-x: -269px;
+  background-position-y: 16px;
 }
 
 .grid div.player {
-  background-image: url(image/space-invaders.png);
-  background-size: contain;
-  background-position: center;
+  background-image: url(images/full-sprite-sheet.png);
+  background-size: 550%;
   background-repeat: no-repeat;
+  background-position-x: -267px;
+  background-position-y: -35px;
 }
 
-.grid div.player[data-direction="forward"] {
-  transform: scaleX(1);
-}
-
-.grid div.player[data-direction="backward"] {
-  transform: scaleX(-1);
-}
 
 .grid div.alien {
-  content: url(image/aliens.png);
+  background-image: url(images/full-sprite-sheet.png);
+  background-size: 550%;
+  background-repeat: no-repeat;
+  background-position-x: -107px;
+  background-position-y: -44px;
 }
 
 .grid div.bomb {
-  background-color: red;
+  background-image: url(images/full-sprite-sheet.png);
+  background-size: 550%;
+  background-repeat: no-repeat;
+  background-position-x: -213px;
+  background-position-y: -36px;
 }
 
 div.welcome_screen {
