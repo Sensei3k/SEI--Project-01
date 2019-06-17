@@ -1,12 +1,10 @@
 # SEI-Project-01: JavaScript Game
----
 
 ### Timeframe
 
 7 days
 
 ## Technologies used
----
 
 -   JavaScript (ES6)
 -   HTML5 + HTML5 Audio
@@ -14,17 +12,16 @@
 -   GitHub
 
 ## Installation
----
 
 1.  Clone or download the repo
 2.  Open the `index.html` in your browser of choice
 
 ## Space Invaders: Game Overview
----
 
 ### Introduction
 
-![fea769f7.png](:storage/898b9b2b-10d8-430f-9953-73fc44e22109/fea769f7.png)
+![one](https://user-images.githubusercontent.com/47805376/59615483-7df69500-911a-11e9-9037-308320607c3b.png)
+
 
 I decided to remake the original Japanese arcade game as best as I could called, [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders) which was released in 1978. 
 
@@ -36,7 +33,7 @@ Link to my hosted version -----> [Sensei's Space Invaders](https://sensei3k.gith
 
 ### Spaceship Controls
 
-![a297e9e4.png](:storage/898b9b2b-10d8-430f-9953-73fc44e22109/a297e9e4.png)
+![controls](https://user-images.githubusercontent.com/47805376/59615669-d332a680-911a-11e9-970a-49d46bf6f351.png)
 -   Movement: :arrow_left: :arrow_right: keys
 -   Laser: Space
 -   Cheat: There is a special key that the user can use to beat the game easily
@@ -45,32 +42,34 @@ Link to my hosted version -----> [Sensei's Space Invaders](https://sensei3k.gith
 
 1. The game begins with an overlay welcome screen which introduces the game as well as providing instructions. The game is only started by clicking on the "Start Game" button, beneath the guide on user controls.
 
-![5f523baa.png](:storage/898b9b2b-10d8-430f-9953-73fc44e22109/5f523baa.png)
+![welcome_full](https://user-images.githubusercontent.com/47805376/59615746-feb59100-911a-11e9-9164-96de80636921.png)
 
 2. The game begins as soon as the user clicks the start button, before the start button is clicked all user controls are disabled and only the user spaceship is visible in the background.
  
-![53d71e98.png](:storage/898b9b2b-10d8-430f-9953-73fc44e22109/53d71e98.png)
+![53d71e98](https://user-images.githubusercontent.com/47805376/59615828-20af1380-911b-11e9-9db4-cc52ba2c145b.png)
 
 3. Points are won by shooting the Space Invaders. For each Space Invader destroyed the user is awarded 10points.
 
-![5f710eeb.png](:storage/898b9b2b-10d8-430f-9953-73fc44e22109/5f710eeb.png)
+![5f710eeb](https://user-images.githubusercontent.com/47805376/59615896-450af000-911b-11e9-82f0-739696be81d8.png)
+
 4. At the beginning of the  game the user has 3 lives and lives are lost every time a Space Invaders laser hits the user.
 
-![Space Lives.gif](:storage/898b9b2b-10d8-430f-9953-73fc44e22109/aac04ba9.gif)
+![aac04ba9](https://user-images.githubusercontent.com/47805376/59615948-6075fb00-911b-11e9-8246-07f0b20fb196.gif)
+
 
 5. There are 3 conditions that ends the game.
 The first condition is to shoot all the Space Invaders. This is a win condition.
 
-![c707aab8.png](:storage/898b9b2b-10d8-430f-9953-73fc44e22109/c707aab8.png)
+![win](https://user-images.githubusercontent.com/47805376/59616069-a16e0f80-911b-11e9-82d6-334ccf643d7c.png)
 
  Also there are 2 lose conditions;
  -  If all players 3 lives are lost.
 
-![726a63f0.png](:storage/898b9b2b-10d8-430f-9953-73fc44e22109/726a63f0.png)
+![lose](https://user-images.githubusercontent.com/47805376/59616105-b185ef00-911b-11e9-8e8d-f239de75161a.png)
 
  - If the Space Invader gets to Earth (this means the bottom of the screen).
 
-![0122411d.png](:storage/898b9b2b-10d8-430f-9953-73fc44e22109/0122411d.png)
+![invaders_earth](https://user-images.githubusercontent.com/47805376/59616147-c2366500-911b-11e9-8ca8-dfc66a83232a.png)
 
 ## Process
 
