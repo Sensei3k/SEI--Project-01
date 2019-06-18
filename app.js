@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-
-  //  ========= Global Scope ====================
+  //  ========= Global Scope ===========================================
   const grid = document.querySelector('.grid')
   const point = document.querySelector('.point span')
   const livesboard = document.querySelector('.lives span')
@@ -17,7 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const squares = []
   const width = 11
   let userIndex = 115
-  let invaders = [0, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25]
+  let invaders = [
+    0,
+    1,
+    3,
+    5,
+    7,
+    9,
+    11,
+    13,
+    15,
+    17,
+    19,
+    21,
+    23,
+    25
+  ]
   let intervalId = null
   let direction = 'forward'
   let points = 0
@@ -28,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameInPlay = false
   let player = null
 
-  //  =========== Create Board ====================
+  //  =========== Create Board ===========================================
   function createBoard() {
     for (let i = 0; i < width * width; i++) {
       const square = document.createElement('div')
@@ -39,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   createBoard()
 
-  // ============== FUNCTIONS ====================
+  // ============== FUNCTIONS =======================================
 
   function startGame() {
     //call all functions to start the game eg. move()
@@ -49,7 +63,22 @@ document.addEventListener('DOMContentLoaded', () => {
     userIndex = 115
     lives = 3
     points = 0
-    invaders = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26]
+    invaders = [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24,
+      26
+    ]
     livesboard.textContent = lives
     point.textContent = points
     squares.forEach(square => square.classList.remove('alien'))
@@ -68,13 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lives === 0) {
           userHit.play()
           gameOver()
-          message.textContent = 'You had just one job man!!! Now we are dead!'
+          message.textContent = 'You had just one job man!!! Earth has fallen!'
         }
       }
     }, 100)
 
     invadersBombInterval = setInterval(() => {
-      // ============ New Set Interval for invader Bombs ========
+      // ============ New Set Interval for invader Bombs ====================
       const bombIndex = invaders[Math.floor(Math.random() * (invaders.length - 1))]
       dropBomb(bombIndex)
     }, 700)
@@ -101,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startGame()
   }
 
-  //============== PLAYER FUNCTIONS ====================
+  //============== PLAYER FUNCTIONS =====================================
   function move() {
     player = squares.find(square => square.classList.contains('player'))
 
@@ -137,7 +166,8 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(points)
       } else { // Set the new index for the missiles square
         // if laser goes off the top of the board
-        if (lasersIndex - width < 0) clearInterval(lasersInterval)
+        if (lasersIndex - width < 0)
+          clearInterval(lasersInterval)
         else {
           lasersIndex -= width
           // Get the new DOM element of the next square
@@ -156,13 +186,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100)
   }
 
-  //============== ALIEN FUNCTIONS ====================
+  //============== ALIEN FUNCTIONS =====================================
   function dropBomb(bombIndex) {
     let missilesIndex = bombIndex + width
     let missile = squares[missilesIndex]
     const missilesInterval = setInterval(() => {
-      if (missile) missile.classList.remove('bomb')
-      if (missilesIndex + width >= width ** 2) clearInterval(missilesInterval)
+      if (missile)
+        missile.classList.remove('bomb')
+      if (missilesIndex + width >= width ** 2)
+        clearInterval(missilesInterval)
       else if (missile) {
         missilesIndex += width
         missile = squares[missilesIndex]
@@ -171,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 50)
   }
 
-  // ============ Alien Movement ============
+  // ============ Alien Movement ======================================
   function moveAliens() {
     invaders.forEach(alien => {
       squares[alien].classList.add('alien')
@@ -193,9 +225,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 200)
   }
 
-  // ============ Event Listeners =======================
+  // ============ Event Listeners ========================================
   document.addEventListener('keyup', (e) => {
-    if (!gameInPlay) return false
+    if (!gameInPlay)
+      return false
     switch (e.keyCode) {
       case 37:
         // left
@@ -234,5 +267,3 @@ document.addEventListener('DOMContentLoaded', () => {
   resetButton.addEventListener('click', reset)
 
 })
-
-// gameInPlay = true
