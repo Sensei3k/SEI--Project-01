@@ -23,9 +23,15 @@
 ![one](https://user-images.githubusercontent.com/47805376/59615483-7df69500-911a-11e9-9037-308320607c3b.png)
 
 
+<<<<<<< HEAD
 I decided to remake the original Japanese arcade game as best as I could called, [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders) which was released in 1978.
 
 The aim of the game is to defend Earth from an Alien Invasion by shooting all the invaders, the invaders also try to shoot you out of space as they progress towards earth.
+=======
+I decided to remake the original Japanese arcade game as best as I could called, [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders) which was released in 1978.
+
+The aim of the game is to defend Earth from an Alien Invasion by shooting all the invaders, the invaders also try to shoot you out of space as they progress towards earth.
+>>>>>>> ff4ce4a3c2c001186225e8fa0d0430d79002068b
 
 
 Link to my hosted version -----> [Sensei's Space Invaders](https://sensei3k.github.io/SEI-Project-01/)
@@ -45,9 +51,15 @@ Link to my hosted version -----> [Sensei's Space Invaders](https://sensei3k.gith
 ![welcome_full](https://user-images.githubusercontent.com/47805376/59615746-feb59100-911a-11e9-9164-96de80636921.png)
 
 2. The game begins as soon as the user clicks the start button, before the start button is clicked all user controls are disabled and only the user spaceship is visible in the background.
+<<<<<<< HEAD
 
 ![53d71e98](https://user-images.githubusercontent.com/47805376/59615828-20af1380-911b-11e9-9db4-cc52ba2c145b.png)
 
+=======
+
+![53d71e98](https://user-images.githubusercontent.com/47805376/59615828-20af1380-911b-11e9-9db4-cc52ba2c145b.png)
+
+>>>>>>> ff4ce4a3c2c001186225e8fa0d0430d79002068b
 3. Points are won by shooting the Space Invaders. For each Space Invader destroyed the user is awarded 10points.
 
 ![5f710eeb](https://user-images.githubusercontent.com/47805376/59615896-450af000-911b-11e9-82f0-739696be81d8.png)
@@ -84,7 +96,11 @@ The starting point for this game was to create my game board and its grid. I ini
     }
     squares[userIndex].classList.add('player')
   }
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> ff4ce4a3c2c001186225e8fa0d0430d79002068b
   createBoard()
 ``````
 ``````css
@@ -99,12 +115,20 @@ After this I created the User Spaceship and add event listeners to enable moveme
 
 The next step was for me to create my Space Invaders. I did this by using the `.forEach()` method to loop over each invader and giving it the class of `alien` to populate the board.
 
+<<<<<<< HEAD
 Movement of the user was set by add `event listeners` on `keyup`, which in turn gives the user horizontal movement at the bottom of the board.
+=======
+Movement of the user was set by add `event listeners` on `keyup`, which in turn gives the user horizontal movement at the bottom of th board.
+>>>>>>> ff4ce4a3c2c001186225e8fa0d0430d79002068b
 
 ### Challenges
 
 
+<<<<<<< HEAD
 A big challenge for me while creating the game was, to get the _invaders_ to move across and downwards towards the user spaceship without running off the board.
+=======
+A big challenge for me while creating the game was, to get the _invaders_ to move across and downwards towards the user spaceship whithout running off the board.
+>>>>>>> ff4ce4a3c2c001186225e8fa0d0430d79002068b
 Secondly getting the invaders to drop bombs that will maintain a vertical trajectory initially proved difficult, but I enjoyed the extra level on complexity this posed to me at the time.
 ``````js
   function dropBomb(bombIndex) {
@@ -125,7 +149,11 @@ Secondly getting the invaders to drop bombs that will maintain a vertical trajec
 ``````
 ### Wins
 
+<<<<<<< HEAD
 One of the wins I got from building this game was in implementing audio features to simulate when a laser has been fired as well as the explosion sound on impact.
+=======
+One of the wins I got from building this game was in implemnting audio features to simulate when a laser has been fired as well as the explosion sound on impact.
+>>>>>>> ff4ce4a3c2c001186225e8fa0d0430d79002068b
 Above all this was the great sense of accomplishment and fun I had while making this game.
 
 ## Future features
